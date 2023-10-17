@@ -65,7 +65,7 @@ class _BookPreviewState extends State<BookPreview> {
       mainAxisSpacing: 16,
       crossAxisSpacing: 16,
       itemCount: widget.list.length,
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 106),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 106),
       physics: widget.isActive
           ? const BouncingScrollPhysics()
           : const NeverScrollableScrollPhysics(),

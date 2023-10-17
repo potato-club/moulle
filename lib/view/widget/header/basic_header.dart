@@ -20,8 +20,6 @@ class BasicHeader extends StatefulWidget {
 }
 
 class _BasicHeaderState extends State<BasicHeader> {
-  bool animationEnd = false;
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -52,21 +50,19 @@ class _BasicHeaderState extends State<BasicHeader> {
         children: [
           Row(
             children: [
-              AnimatedContainer(
+              AnimatedOpacity(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.ease,
-                width: 90,
-                transform: widget.isActive
-                    ? Matrix4.translationValues(0, 42, 0)
-                    : Matrix4.translationValues(0, animationEnd ? 42 : 0, 0),
-                onEnd: () =>
-                    {if (widget.isActive) setState(() => animationEnd = true)},
-                child: Text(
-                  widget.title,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                opacity: widget.isActive ? 0 : 1,
+                child: SizedBox(
+                  width: 90,
+                  child: Text(
+                    widget.title,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
@@ -76,11 +72,8 @@ class _BasicHeaderState extends State<BasicHeader> {
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.ease,
                   transform: widget.isActive
-                      ? Matrix4.translationValues(0, animationEnd ? 0 : 42, 0)
+                      ? Matrix4.translationValues(0, 0, 0)
                       : Matrix4.translationValues(0, 42, 0),
-                  onEnd: () => {
-                    if (!widget.isActive) setState(() => animationEnd = false)
-                  },
                   child: Text(
                     widget.transTitle,
                     style: const TextStyle(
