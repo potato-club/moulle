@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:moulle/view/screen/detail_screen.dart';
 
 class BookPreview extends StatefulWidget {
   final List<dynamic> list;
@@ -18,12 +19,18 @@ class BookPreview extends StatefulWidget {
 
 class _BookPreviewState extends State<BookPreview> {
   Widget gridItem(
+    String id,
     String img,
     String label,
     String writer,
   ) {
     return GestureDetector(
-      onTap: () => print(label),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(id: id, img: img),
+            fullscreenDialog: true,
+          )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,7 +44,10 @@ class _BookPreviewState extends State<BookPreview> {
               borderRadius: BorderRadius.circular(8),
             ),
             clipBehavior: Clip.hardEdge,
-            child: Image.network(img),
+            child: Hero(
+                transitionOnUserGestures: true,
+                tag: id,
+                child: Image.network(img)),
           ),
           Text(
             label,
@@ -70,8 +80,8 @@ class _BookPreviewState extends State<BookPreview> {
           ? const BouncingScrollPhysics()
           : const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return gridItem(widget.list[index]['img'], widget.list[index]['label'],
-            widget.list[index]['writer']);
+        return gridItem(widget.list[index]['id'], widget.list[index]['img'],
+            widget.list[index]['label'], widget.list[index]['writer']);
       },
     );
   }

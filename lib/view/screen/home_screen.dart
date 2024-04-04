@@ -151,36 +151,42 @@ class _HomeScreenState extends State<HomeScreen> {
                           isActive: activeMode == ActiveModeType.list,
                           list: const [
                             {
+                              'id': '1',
                               'img':
                                   'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
                               'label': '비가 오면 열리는 상점',
                               'writer': '유영광'
                             },
                             {
+                              'id': '2',
                               'img':
                                   'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
                               'label': '나만 그런 게 아니었어',
                               'writer': '요시타케 신스케'
                             },
                             {
+                              'id': '3',
                               'img':
                                   'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
                               'label': '편집 만세',
                               'writer': '리베카 리'
                             },
                             {
+                              'id': '4',
                               'img':
                                   'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
                               'label': '비가 오면 열리는 상점',
                               'writer': '유영광'
                             },
                             {
+                              'id': '5',
                               'img':
                                   'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
                               'label': '나만 그런 게 아니었어',
                               'writer': '요시타케 신스케'
                             },
                             {
+                              'id': '6',
                               'img':
                                   'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
                               'label': '편집 만세',
