@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class CameraButton extends StatelessWidget {
-  const CameraButton({super.key});
+  const CameraButton({super.key, required this.onTap});
+
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +23,18 @@ class CameraButton extends StatelessWidget {
           ]),
       child: Center(
         child: InkWell(
-            child: Container(
-          width: 60,
-          height: 60,
-          decoration: const BoxDecoration(
-            color: Colors.black,
-            shape: BoxShape.circle,
+          onTap: onTap,
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Symbols.location_searching,
+                size: 40, color: Colors.white),
           ),
-          child: const Icon(Symbols.location_searching,
-              size: 40, color: Colors.white),
-        )),
+        ),
       ),
     );
   }

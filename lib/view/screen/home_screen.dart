@@ -88,157 +88,168 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
     }
     return Scaffold(
-        backgroundColor: const Color(0XFF202123),
-        body: Stack(
-          children: <Widget>[
-            Positioned(
-              bottom: 0,
-              child: GestureDetector(
-                onVerticalDragUpdate: (details) {
-                  if (activeMode == ActiveModeType.menu) {
-                    if (details.delta.dy < -1) {
-                      if (!scrollStop) {
-                        setState(() => duration = 350);
-                        setState(() => activeMode = ActiveModeType.list);
-                        setState(() => showMenu = false);
-                      }
-                    } else if (details.delta.dy > 1) {
-                      setState(() => duration = 500);
-                      setState(() => activeMode = ActiveModeType.camera);
+      backgroundColor: const Color(0XFF202123),
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+            bottom: 0,
+            child: GestureDetector(
+              onVerticalDragUpdate: (details) {
+                if (activeMode == ActiveModeType.menu) {
+                  if (details.delta.dy < -1) {
+                    if (!scrollStop) {
+                      setState(() => duration = 350);
+                      setState(() => activeMode = ActiveModeType.list);
+                      setState(() => showMenu = false);
                     }
-                  } else if (activeMode == ActiveModeType.camera) {
-                    if (details.delta.dy < -1) {
-                      setState(() => scrollStop = true);
-                      setState(() => activeMode = ActiveModeType.menu);
-                    }
+                  } else if (details.delta.dy > 1) {
+                    setState(() => duration = 500);
+                    setState(() => activeMode = ActiveModeType.camera);
                   }
-                },
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: duration),
-                  curve: Curves.ease,
-                  onEnd: () => setState(() => scrollStop = false),
-                  width: MediaQuery.sizeOf(context).width,
-                  height: contentHeight,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                        color: Colors.black.withOpacity(0.1), width: 1),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    ),
+                } else if (activeMode == ActiveModeType.camera) {
+                  if (details.delta.dy < -1) {
+                    setState(() => scrollStop = true);
+                    setState(() => activeMode = ActiveModeType.menu);
+                  }
+                }
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: duration),
+                curve: Curves.ease,
+                onEnd: () => setState(() => scrollStop = false),
+                width: MediaQuery.sizeOf(context).width,
+                height: contentHeight,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                      color: Colors.black.withOpacity(0.1), width: 1),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 14, 0,
-                            activeMode == ActiveModeType.camera ? 84 : 66),
-                        child: Center(
-                          child: Container(
-                            width: 40,
-                            height: 4,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 14, 0,
+                          activeMode == ActiveModeType.camera ? 84 : 66),
+                      child: Center(
+                        child: Container(
+                          width: 40,
+                          height: 4,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: BookPreview(
-                          scrollController: _scrollController,
-                          isActive: activeMode == ActiveModeType.list,
-                          list: const [
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
-                              'label': '비가 오면 열리는 상점',
-                              'writer': '유영광'
-                            },
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
-                              'label': '나만 그런 게 아니었어',
-                              'writer': '요시타케 신스케'
-                            },
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
-                              'label': '편집 만세',
-                              'writer': '리베카 리'
-                            },
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
-                              'label': '비가 오면 열리는 상점',
-                              'writer': '유영광'
-                            },
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
-                              'label': '나만 그런 게 아니었어',
-                              'writer': '요시타케 신스케'
-                            },
-                            {
-                              'img':
-                                  'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
-                              'label': '편집 만세',
-                              'writer': '리베카 리'
-                            },
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      child: BookPreview(
+                        scrollController: _scrollController,
+                        isActive: activeMode == ActiveModeType.list,
+                        list: const [
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
+                            'label': '비가 오면 열리는 상점',
+                            'writer': '유영광'
+                          },
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
+                            'label': '나만 그런 게 아니었어',
+                            'writer': '요시타케 신스케'
+                          },
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
+                            'label': '편집 만세',
+                            'writer': '리베카 리'
+                          },
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
+                            'label': '비가 오면 열리는 상점',
+                            'writer': '유영광'
+                          },
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
+                            'label': '나만 그런 게 아니었어',
+                            'writer': '요시타케 신스케'
+                          },
+                          {
+                            'img':
+                                'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
+                            'label': '편집 만세',
+                            'writer': '리베카 리'
+                          },
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            AnimatedPositioned(
-                duration: Duration(milliseconds: duration),
-                curve: Curves.ease,
-                bottom: menuHeight,
-                child: ScrollMenuBar(
-                  currentMenu: currentMenu,
-                  setCurrentMenu: setCurrentMenu,
-                  menuList: const [
-                    {'label': '모두'},
-                    {
-                      'label': '거실 책장',
-                      'icon': Icons.shelves,
-                    },
-                    {
-                      'label': '거실 책장2',
-                      'icon': Icons.shelves,
-                    },
-                    {
-                      'label': '거실 책장3',
-                      'icon': Icons.shelves,
-                    },
-                    {
-                      'label': '거실 책장4',
-                      'icon': Icons.shelves,
-                    },
-                  ],
-                )),
-            Positioned(
-              top: -1,
-              child: BasicHeader(
-                title: 'Moulle',
-                bgColor: Colors.white,
-                isActive: activeMode == ActiveModeType.list,
-                transTitle: currentMenu,
+          ),
+          AnimatedPositioned(
+              duration: Duration(milliseconds: duration),
+              curve: Curves.ease,
+              bottom: menuHeight,
+              child: ScrollMenuBar(
+                currentMenu: currentMenu,
+                setCurrentMenu: setCurrentMenu,
+                menuList: const [
+                  {'label': '모두'},
+                  {
+                    'label': '거실 책장',
+                    'icon': Icons.shelves,
+                  },
+                  {
+                    'label': '거실 책장2',
+                    'icon': Icons.shelves,
+                  },
+                  {
+                    'label': '거실 책장3',
+                    'icon': Icons.shelves,
+                  },
+                  {
+                    'label': '거실 책장4',
+                    'icon': Icons.shelves,
+                  },
+                ],
+              )),
+          Positioned(
+            top: -1,
+            child: BasicHeader(
+              title: 'Moulle',
+              bgColor: Colors.white,
+              isActive: activeMode == ActiveModeType.list,
+              transTitle: currentMenu,
+            ),
+          ),
+          const Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: HomeAppbar(),
+          ),
+          Positioned(
+            bottom: 32,
+            left: 0,
+            right: 0,
+            child: CameraButton(
+              onTap: () => setState(
+                () {
+                  activeMode = ActiveModeType.camera;
+                },
               ),
             ),
-            const Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: HomeAppbar(),
-            ),
-            const Positioned(
-                bottom: 16, left: 0, right: 0, child: CameraButton()),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

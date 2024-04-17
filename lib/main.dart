@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moulle/view/screen/home_screen.dart';
+import 'package:moulle/view/screen/login_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  await Supabase.initialize(
+    url: const String.fromEnvironment('SUPABASE_URL'),
+    anonKey: const String.fromEnvironment('SUPABASE_ANON_KEY'),
+  );
+
   runApp(const MyApp());
 }
 
@@ -15,10 +21,13 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+      title: 'Moulle',
+      theme: ThemeData(
+        fontFamily: 'Pretendard',
+      ),
+      home: const LoginScreen(),
     );
   }
 }
