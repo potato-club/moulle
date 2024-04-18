@@ -90,9 +90,14 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
+  assets:
+    - assets/images/
+    - assets/images/socials/
+
   fonts:
     - family: Pretendard
       fonts:
         - asset: assets/fonts/Pretendard-Light.otf
         - asset: assets/fonts/Pretendard-Regular.otf
+        - asset: assets/fonts/Pretendard-SemiBold.otf
         - asset: assets/fonts/Pretendard-Bold.otf

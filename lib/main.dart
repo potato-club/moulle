@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
       title: 'Moulle',
       theme: ThemeData(
         fontFamily: 'Pretendard',
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          background: Colors.white,
+        ),
       ),
       home: const LoginScreen(),
     );
