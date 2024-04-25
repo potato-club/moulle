@@ -59,7 +59,7 @@ class _BasicHeaderState extends State<BasicHeader> {
                   child: Text(
                     widget.title,
                     style: const TextStyle(
-                      fontSize: 28,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -77,7 +77,7 @@ class _BasicHeaderState extends State<BasicHeader> {
                   child: Text(
                     widget.transTitle,
                     style: const TextStyle(
-                      fontSize: 28,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

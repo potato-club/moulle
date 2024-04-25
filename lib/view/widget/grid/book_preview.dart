@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:moulle/model/thing.dart';
 
 class BookPreview extends StatefulWidget {
-  final List<dynamic> list;
+  final List<Thing> list;
   final bool isActive;
   final ScrollController scrollController;
   const BookPreview({
@@ -37,7 +38,7 @@ class _BookPreviewState extends State<BookPreview> {
               borderRadius: BorderRadius.circular(8),
             ),
             clipBehavior: Clip.hardEdge,
-            child: Image.network(img),
+            child: img.isEmpty ? const Placeholder() : Image.network(img),
           ),
           Text(
             label,
@@ -70,8 +71,15 @@ class _BookPreviewState extends State<BookPreview> {
           ? const BouncingScrollPhysics()
           : const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return gridItem(widget.list[index]['img'], widget.list[index]['label'],
-            widget.list[index]['writer']);
+        if (widget.list[index].images.isEmpty) {
+          return gridItem('', widget.list[index].name, '익명');
+        }
+
+        return gridItem(
+          widget.list[index].images.first,
+          widget.list[index].name,
+          '익명',
+        );
       },
     );
   }

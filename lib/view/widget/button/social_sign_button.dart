@@ -28,7 +28,12 @@ class SocialSignButton extends StatelessWidget {
         height: 46,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(0.1)),
+          border: Border(
+            top: BorderSide(color: Colors.black.withOpacity(0.1)),
+            left: BorderSide(color: Colors.black.withOpacity(0.1)),
+            right: BorderSide(color: Colors.black.withOpacity(0.1)),
+            bottom: BorderSide(width: 4, color: Colors.black.withOpacity(0.1)),
+          ),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(

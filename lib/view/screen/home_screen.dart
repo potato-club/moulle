@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:moulle/view/widget/appbar/appbar.dart';
-import 'package:moulle/view/widget/appbar/camera_button.dart';
+import 'package:moulle/model/thing.dart';
+import 'package:moulle/view/widget/appbar/basic_app_bar.dart';
+import 'package:moulle/view/widget/button/shutter_button.dart';
 import 'package:moulle/view/widget/grid/book_preview.dart';
 import 'package:moulle/view/widget/header/basic_header.dart';
 import 'package:moulle/view/widget/menubar/scroll_menubar.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 enum ActiveModeType {
   camera,
@@ -25,12 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
   bool showMenu = false;
   bool scrollStop = false;
   int duration = 350;
+  List<Thing> things = [];
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListenerActive);
     _scrollController.addListener(_scrollListenerShowMenu);
+
+    // (() async {
+    //   final data = await Supabase.instance.client.from('things').select();
+
+    //   setState(() {
+    //     things = data.map((e) => Thing.fromData(e)).toList();
+    //   });
+    // })();
   }
 
   void _scrollListenerActive() {
@@ -149,44 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: BookPreview(
                         scrollController: _scrollController,
                         isActive: activeMode == ActiveModeType.list,
-                        list: const [
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
-                            'label': '비가 오면 열리는 상점',
-                            'writer': '유영광'
-                          },
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
-                            'label': '나만 그런 게 아니었어',
-                            'writer': '요시타케 신스케'
-                          },
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
-                            'label': '편집 만세',
-                            'writer': '리베카 리'
-                          },
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/31867/71/cover500/k132833528_2.jpg',
-                            'label': '비가 오면 열리는 상점',
-                            'writer': '유영광'
-                          },
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/32463/98/cover500/8934940980_1.jpg',
-                            'label': '나만 그런 게 아니었어',
-                            'writer': '요시타케 신스케'
-                          },
-                          {
-                            'img':
-                                'https://image.aladin.co.kr/product/32470/2/cover500/k322935408_1.jpg',
-                            'label': '편집 만세',
-                            'writer': '리베카 리'
-                          },
-                        ],
+                        list: things,
                       ),
                     ),
                   ],
@@ -230,17 +204,17 @@ class _HomeScreenState extends State<HomeScreen> {
               transTitle: currentMenu,
             ),
           ),
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: HomeAppbar(),
-          ),
+          // const Positioned(
+          //   bottom: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child: CustomAppBar(),
+          // ),
           Positioned(
             bottom: 32,
             left: 0,
             right: 0,
-            child: CameraButton(
+            child: ShutterButton(
               onTap: () => setState(
                 () {
                   activeMode = ActiveModeType.camera;
