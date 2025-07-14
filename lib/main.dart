@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moulle/view/screen/home_screen.dart';
 import 'package:moulle/view/screen/login_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           background: Colors.white,
         ),
       ),
-      home: const LoginScreen(),
+      home: const HomeScreen(),
     );
   }
 }

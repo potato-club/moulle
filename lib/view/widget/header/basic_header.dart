@@ -106,7 +106,7 @@ class _BasicHeaderState extends State<BasicHeader> {
                     color: Colors.black87,
                   ),
                   child: Image.network(
-                      'https://yt3.ggpht.com/yti/ADpuP3NXuzVnH8kkxn2xCsN_Lij7bjDP8BAKdpMtJXHi=s108-c-k-c0x00ffffff-no-rj'),
+                      'https://yt3.ggpht.com/Bdu9TPjvhlxC3qYWtbbPx5fYBMU8eC6dkhwy-eiSFRU3Z1eS2vuvZrtDuzZ_fSyHAc5ukjGAl7k=s88-c-k-c0x00ffffff-no-rj'),
                 ),
               ),
             ],

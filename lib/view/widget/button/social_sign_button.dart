@@ -5,7 +5,7 @@ enum SocialType {
   apple,
 }
 
-class SocialSignButton extends StatelessWidget {
+class SocialSignButton extends StatefulWidget {
   const SocialSignButton({super.key, this.onPressed, required this.type});
 
   const SocialSignButton.google({super.key, this.onPressed})
@@ -19,9 +19,19 @@ class SocialSignButton extends StatelessWidget {
   final SocialType type;
 
   @override
+  _SocialSignButtonState createState() => _SocialSignButtonState();
+}
+
+class _SocialSignButtonState extends State<SocialSignButton> {
+  bool _isTouched = false;
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPressed,
+      onTapDown: (_) => setState(() => _isTouched = true),
+      onTapUp: (_) => setState(() => _isTouched = false),
+      onTapCancel: () => setState(() => _isTouched = false),
+      onTap: widget.onPressed,
       borderRadius: BorderRadius.circular(16),
       child: Ink(
         width: 225,
@@ -32,21 +42,23 @@ class SocialSignButton extends StatelessWidget {
             top: BorderSide(color: Colors.black.withOpacity(0.1)),
             left: BorderSide(color: Colors.black.withOpacity(0.1)),
             right: BorderSide(color: Colors.black.withOpacity(0.1)),
-            bottom: BorderSide(width: 4, color: Colors.black.withOpacity(0.1)),
+            bottom: BorderSide(
+                width: _isTouched ? 1.0 : 4.0,
+                color: Colors.black.withOpacity(0.1)),
           ),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
           children: [
             Image.asset(
-              switch (type) {
+              switch (widget.type) {
                 (SocialType.google) => 'assets/images/socials/google.png',
                 (SocialType.apple) => 'assets/images/socials/apple.png',
               },
             ),
             Expanded(
               child: Text(
-                switch (type) {
+                switch (widget.type) {
                   (SocialType.google) => 'Google로 로그인하기',
                   (SocialType.apple) => 'Apple로 로그인하기',
                 },

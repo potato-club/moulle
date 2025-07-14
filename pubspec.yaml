@@ -37,6 +37,9 @@ dependencies:
   material_symbols_icons: ^4.2668.0
   flutter_staggered_grid_view: ^0.7.0
   supabase_flutter: ^2.4.0
+  smooth_sheets: ^0.11.3
+  faker: ^2.2.0
+  camera: ^0.11.1
 
 dev_dependencies:
   flutter_test:
